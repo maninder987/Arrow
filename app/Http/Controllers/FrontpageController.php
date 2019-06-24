@@ -14,8 +14,12 @@ class FrontpageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $posts = Post::all();
-        return view('index')->with('posts',$posts);
+    {   $latestPost = Post::orderBy('id', 'desc')->first();
+        $posts = Post::orderBy('id', 'desc')->take(3)->get();
+        $recentPosts= Post::orderBy('id', 'desc')->take(5)->get();
+        return view('index')->with('posts',$posts)
+                            ->with('recentPosts',$recentPosts)
+                            ->with('latestPost',$latestPost);
     }
 
     /**

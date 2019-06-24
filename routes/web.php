@@ -13,17 +13,21 @@
       Auth::routes();
 
       Route::get('/home', 'HomeController@index')->name('home');
+      
+      
 
 
+      // route for search 
+      Route::post('/search/{id}',[
+        'uses'=>'SearchController@show',
+        'as'=>'search'
+      ]);
       // Route::get('/', function () {
       //     return view('index');
       // });
 
-      //Displaying posts to front end
-      Route::get("/",[
-        'uses'=>'FrontpageController@index',
-        'as'=>'home'
-      ]);
+      //Displaying posts to front end  'as'=>'home'
+      Route::get("/",['uses'=>'FrontpageController@index'])->name('home');
 
       Route::get("/test",[
         'uses'=>'Auth\LoginController@handleProviderCallback',
@@ -34,15 +38,61 @@
         'uses'=>'BlogController@index',
         'as'=>'blog'
       ]);
+      //displaying all author posts frontend
+      Route::get('/author/posts/{id}',[
+        'uses'=>'UserController@show',
+        'as'=>'author.posts'
+      ]);
+
+      //display all posts by category frontend
+      Route::get('/category/posts/{id}',[
+          'uses'=>'CategoryController@show',
+          'as'=>'category.posts'
+        ]);
+
+      //display single post frontend
+
+      Route::get('/single/post/{id}',[
+        'uses'=>'PostController@show',
+        'as'=>'single.post'
+      ]);
       
+
 
 
       Route::get('login/github', 'Auth\LoginController@redirectToProvider');
       Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
 
-//'middleware' => 'admin'
-Route::group(['middleware' => 'auth'], function(){
 
+Route::group(['middleware' => 'auth'], function(){
+      
+      //delete comment admin 
+      Route::post('/delete/{id}',[
+        'uses'=>'CommentController@destroy',
+        'as'=>'comment.delete'
+      ]);
+
+
+      //approve a comment from admin
+      Route::post('/approve/{id}',[
+        'uses'=>'CommentController@update',
+        'as'=>'comment.ckeck'
+      ]);
+  
+  
+      //adding reply to database
+      Route::post('/reply',[
+        'uses'=>'ReplyController@store',
+        'as'=>'reply'
+      ]);
+  
+  
+      //adding comments to database
+      Route::post('/comment',[
+        'uses'=>'CommentController@store',
+        'as'=>'comment'
+      ]);
+  
       //route for adding form for new post
       Route::get('/post/addpost',[
           'uses'=>'PostController@index',
@@ -62,8 +112,6 @@ Route::group(['middleware' => 'auth'], function(){
       ]);
 
       
-
-
       //route for adding form for new category
       Route::get('/post/addcategory',[
           'uses'=>'CategoryController@index',
@@ -120,6 +168,12 @@ Route::group(['middleware' => 'auth'], function(){
       Route::get("tag/create",[
         'uses'=>'TagController@create',
         'as'=>'admin.showtags'
+      ]);
+
+      //displaying all comments for single user in edit-delete tab backend
+      Route::get('/comments/{id}',[
+        'uses'=>'CommentController@show',
+        'as'=>'comments.show'
       ]);
 
 

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Post;
+
+use App\User;
+
 class UserController extends Controller
 {
     /**
@@ -44,8 +48,11 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $user = User::find($id);
+        $posts = Post::where("author", "=", $id)->get();
+        return view('author')->with('posts', $posts)
+                             ->with('user',$user);
     }
 
     /**

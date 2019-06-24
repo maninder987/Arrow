@@ -68,11 +68,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="dropdown messages-menu">
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-success"><?php echo count($commentsNotification);?></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+              <li class="header">You have <?php echo count($commentsNotification);?> messages</li>
               <li>
                 <!-- inner menu: contains the messages -->
                 <ul class="menu">
@@ -82,13 +82,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- User Image -->
                         <img src="{{ asset('backend/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
                       </div>
+                      <br><br>
                       <!-- Message title and timestamp -->
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
+                      
+                      <?php 
+                      foreach ($commentsNotification as $commentNotify) {
+                        ?>
+                        <a href="{{route('comments.show',Auth::user()->id)}}"> 
+                          <span>From : <?php echo $commentNotify->User->name ?></span>
+                          
+                            <h3><?php echo ucfirst($commentNotify['message']);  ?></h3>
+                          
+                        </a>
+                        <?php
+                      }
+                      ?>
+                       
+                      
                       <!-- The message -->
-                      <p>Why not buy a new awesome theme?</p>
+                      
                     </a>
                   </li>
                   <!-- end message -->
@@ -104,7 +116,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="dropdown notifications-menu">
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
+            <i class="fa fa-envelope-o"></i>
               <span class="label label-warning">10</span>
             </a>
             <ul class="dropdown-menu">
@@ -322,6 +334,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li><a href="#">Edit / Delete Users</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Comments</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Add New Comments</a></li>
+            <li><a href="{{route('comments.show',Auth::user()->id)}}">Edit / Delete Comments</a></li>
+          </ul>
+        </li>
         <li><a href='#'>Settings</a></li>
       </ul>
       <!-- /.sidebar-menu -->
@@ -461,10 +484,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
  <script src="{{ asset('backend/dist/js/adminlte.min.js')  }}"></script>
  <script type="text/javascript" src="{{ asset('backend/bower_components/select2/dist/js/select2.full.min.js')  }}"></script>
 
- <script src="{{ asset('custom.js')  }}"></script>
 
- <!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+ <script src="{{ asset('custom.js')  }}"></script>
+ <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script>
+    CKEDITOR.replace( 'summary-ckeditor' );
+</script>
+
  </body>
  </html>

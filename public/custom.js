@@ -69,9 +69,6 @@ $(document).ready(function(){
            }
     });
 
-
-
-
     //delete category using ajax
     $(".delete_category").click(function(e){
       e.preventDefault();
@@ -103,11 +100,6 @@ $(document).ready(function(){
     $("#close_delete").click(function(){
       $(".sure_message").hide(10);
     });
-
-
-
-
-
 
     //adding posts using ajax
 
@@ -157,27 +149,13 @@ $(document).ready(function(){
         var title =  $(this).parent().siblings().find(".id_title").attr('data');
         var content =  $(this).parent().siblings().find(".id_content").attr('data');
         var author =  $(this).parent().siblings().find(".id_author").attr('data');
-        
-
         $("#model_title").val(title);
         $("#model_content").val(content);
         $("#model_category").val(category);
         $("#model_tags").val(tags);
         $("#model_image_output").attr("src",pic);
-        
-
-
-
-
 
       });
-
-
-
-
-
-
-
 
       //inserting category in database
      $('#tag_sender').click(function(e){
@@ -214,10 +192,130 @@ $(document).ready(function(){
           }
       });
 
+      //replying to comment backend--setting values to modal
+      
+      $(".replyAdmin").click(function(){
+        $('.boxWrapperReply').show();
+        var under_comment = $(this).attr('under_comment');
+        var post_id = $(this).attr('post_id');
+        var replied_by = $(this).attr('replied_by');
+        var token = $(this).attr('token');
+        
+        $(".replyAuthorAdmin").attr('under_comment',under_comment);
+        $(".replyAuthorAdmin").attr('post_id',post_id);
+        $(".replyAuthorAdmin").attr('replied_by',replied_by);
+        $(".replyAuthorAdmin").attr('token',token);
+      });
+
+      $(".sendReplyAdmin").click(function(){
+
+        var reply = CKEDITOR.instances.editor.getData();
+        var commentId = $(".replyAuthorAdmin").attr('under_comment');
+        var post_id = $(".replyAuthorAdmin").attr('post_id');
+        var replied_by = $(".replyAuthorAdmin").attr('replied_by');
+        var token = $(".replyAuthorAdmin").attr('token');
+
+          if(reply != ''){
+            reply=reply.replace(/<\/?[^>]+>/gi, ''); //removing html tags
+                    $.ajax({
+                      headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                      },
+                        url:"/reply",
+                        type: "post",
+                        data: {'under_comment':commentId,
+                              'post_id':post_id,
+                              'replied_by':replied_by,
+                              '_token': token,
+                              'reply':reply
+                              },
+                        success: function(data) {
+                          alert(data);
+                        },
+                        error: function(data) {
+                            alert(data);
+                          }
+                     });
+          }else{
+            alert("Add Reply You Want To Send");
+          }
+      });
+
+
+
+      
+      $('.closeReplyModelAdmin').click(function() {
+        $('.boxWrapperReply').hide();
+        CKEDITOR.instances.editor.setData('');
+      });
+
+      $(".approveComment").click(function(){
+        var  commentId = $(this).attr('under_comment');
+        var  token = $(this).attr('token');
+        //$(".newComment")
+        $(this).parent().parent().parent().find(".newComment").remove();
+     
+        
+        $.ajax({
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                    url:"/approve/"+commentId,
+                    type: "post",
+                    data: {'commentId':commentId,
+                          '_token': token
+                          },
+                    success: function(data) {
+                      alert(data);
+                      location.reload();
+                    },
+                    error: function(data) {
+                        alert(data);
+                        location.reload();
+                      }
+                });
+        });
+
+        $(".deleteCommentAdmin").click(function(){
+          var commentId = $(this).attr("under_comment");
+          var token = $(this).attr("token");
+          $(this).parent().parent().parent().hide(500);
+        
+          $.ajax({
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                    url:"/delete/"+commentId,
+                    type: "post",
+                    data: {'commentId':commentId,
+                          '_token': token
+                          },
+                    success: function(data) {
+                      $(".successDeleteComment").show(500);
+                      $(".successDeleteComment").text("Comment Deleted Successfully");
+                      setTimeout(() => {
+                        $(".successDeleteComment").hide(500);
+                      },5000);
+                    },
+                    error: function(data) {
+                      $(".errorDeleteComment").show(500);
+                      $(".errorDeleteComment").text("Error Cannot Delete Comment");
+                      }
+                });
+
+
+        });
+
+
+
+
+
+
 });
 
 
 
+		
     
 
      

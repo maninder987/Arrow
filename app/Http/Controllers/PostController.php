@@ -9,7 +9,11 @@ use App\Post;
 
 use App\User;
 
+use App\Comments;
+
 use DB;
+
+use App\Replies;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -92,7 +96,16 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        //$post = Post::find($id);
+        $reply = Replies::where("post_id","=",$id) ->orderBy('id', 'Desc')->get();
+        $comments = Comments::where("post_id","=",$id) ->orderBy('id', 'Desc')->get();
+        $post = Post::where("id", "=", $id)->first();
+        $postsSameCategory = Post::where("category", "=", $post['category'])->get();
+        $result = $postsSameCategory->toArray();
+        return view('singlePost')->with('post',$post)
+                                 ->with('category',$result)
+                                 ->with('comments',$comments)
+                                 ->with('reply',$reply);
     }
 
     /**

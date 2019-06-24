@@ -1,3 +1,310 @@
+.ck.ck-editor__editable_inline>:last-child {
+    margin-bottom: var(--ck-spacing-large);
+    COLOR: #333;
+}
+
+
 div#form_box_wrapper {
     padding: 50px;
 }
+
+h1,h1,h3,h4{
+    font-family: 'Righteous', cursive !important;
+}
+p {
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 23px;
+    line-height: 1.4;
+}
+
+a{
+    color:#1d68a7;
+    text-decoration: none !important;
+}
+a:hover{
+    color:#0b3455 !important
+}
+.btn-primary {
+    background: #6cb2eb !important;
+    border: none !important;
+}
+.btn-primary:hover {
+    background: #d8e3ec !important;
+    border: none !important;
+}
+#fh5co-header .navbar-brand{
+    background-color:#d8e3ec !important;
+    color:#1d68a7 !important;
+}
+.row{
+    display: block !important;
+}
+
+div#intro {
+    margin-top: 195px;
+    padding: 50px;
+    margin-bottom: 120px;
+}
+
+#fh5co-main{
+    padding-top:0px !important;
+}
+
+.carousel-inner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-height: 600px;
+}
+h1#latest_posts_title {
+    padding-bottom: 40px;
+}
+
+#fh5co-footer {
+    background-color: #fff;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+#fh5co-footer a li{
+    color: #777272 !important;
+}
+#fh5co-header > .navbar{
+    /* background-color: #610de8; */
+}
+#fh5co-header{
+    /* background-color: #6716f4; */
+}
+
+div#wrapper-box{
+    margin-top: 250px;
+}
+
+#post-img{
+    padding-bottom: 40px;
+}
+
+div#latest_posts_container {
+    background-color:  #20dad1 !important;
+    color: #777272;
+    padding-top: 100px;
+    padding-bottom:100px;
+}
+div#latest_posts_container h1,div#latest_posts_container h2,div#latest_posts_container h3{
+    color: #fff;
+}
+div#features {
+    background-color: #f5f5f5;
+    color: #333;
+    padding-bottom: 100px;
+    padding-top: 100px;
+}
+
+#fh5co-content{
+    padding: none !important;
+}
+
+#fh5co-team {
+    clear: both;
+    
+    padding-top: 100px !important;
+    padding-bottom: 0px !important;
+}
+div#footer_data {
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+#footer_data a {
+    list-style: none;
+    font-size: 17px;
+    font-family: 'Fjalla One', sans-serif;
+    padding: 20px;
+    color: #fff !important;
+}
+
+div#scroller_posts {
+    background-color: #20DAD4;
+    height: 56px;
+    padding: 12px;
+}
+
+div#scroller_posts a {
+    color: #fff !important;
+    font-size: 20px;
+    font-family: monospace;
+}
+span#scrollingPosts {
+    padding: 50px;
+}
+
+h4.outputSearch {
+    padding: 20px;
+    color: #fff !important;
+    line-height: 33px;
+    position: sticky;
+    font-family: sans-serif !important;
+    padding-left: 0px;
+    margin-top: 20px !important;
+}
+
+#navbarToggleExternalContent .p-4 {
+    padding-top: 20px !important;
+}
+.outputSearch a{
+    color:#fff !important;
+    text-transform: capitalize;
+}
+.outputSearch a:hover{
+    color: rgb(27, 148, 240) !important;
+}
+.alertAfterComment,.alertAfterCommentError,.alertAfterReply,.alertAfterReplyError,.replyBoxWrapper{
+    display: none;
+}
+.thumbnail .commentOutput {
+    padding: 66px;
+}
+
+.replyInput{
+    display:none;
+    margin-top: 20px;
+}
+
+a.makeReply {
+    color: #1d68a7 !important;
+    padding-top: 0px !important;
+}
+
+.replyAlert{
+    display:none;
+}
+.thumbnail.replyOutputBox {
+    border-radius: 0px;
+    text-transform: capitalize;
+}
+.thumbnail.replyOutputBox h5{
+    color: #fff !important;
+}
+p.eachReply{
+    font-size:18px !important;
+    
+}
+
+.sidebarSticky{
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 100%; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+}
+
+.antiSticky{
+    overflow: visible;
+}
+
+.owl-carousel{
+    margin-bottom:100px;
+}
+
+.owl-item img{
+    min-height:200px;
+}
+
+img.userImage {
+    border: solid 1px #bdbdbd;
+    border-radius: 50px;
+    margin-right: 100px;
+}
+
+div#fh5co-main {
+    background-color: #fff !important;
+}
+.row.slider_item_text {
+    padding: 200px;
+    background-color: #fff;
+}
+
+video { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+    transition: 1s opacity;
+}
+.stopfade { 
+   opacity: .5;
+}
+
+#polina { 
+  font-family: Agenda-Light, Agenda Light, Agenda, Arial Narrow, sans-serif;
+  font-weight:100; 
+  background: rgba(0,0,0,0.3);
+  color: white;
+  padding: 2rem;
+  width: 33%;
+  margin:2rem;
+  float: right;
+  font-size: 1.2rem;
+}
+h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-top: 0;
+  letter-spacing: .3rem;
+}
+#polina button { 
+  display: block;
+  width: 80%;
+  padding: .4rem;
+  border: none; 
+  margin: 1rem auto; 
+  font-size: 1.3rem;
+  background: rgba(255,255,255,0.23);
+  color: #fff;
+  border-radius: 3px; 
+  cursor: pointer;
+  transition: .3s background;
+}
+#polina button:hover { 
+   background: rgba(0,0,0,0.5);
+}
+/* admin reply-edit-delete for comments */
+.boxWrapperReply,.boxWrapperEdit,.successDeleteComment,.errorDeleteComment,.hide{
+    display:none;
+}
+
+.row.slider_item_text {
+    padding: 200px;
+    background-color: #20dad1;
+}
+.row.slider_item_text p{
+    font-size: 28px;
+    color: #fff;
+}
+
+.bg-dark{
+    background-color: #20dad1 !important;
+}
+
+.p-4{
+    padding: 0px !important;
+}
+
+.mb-3, .my-3 {
+    margin:0px !important;
+}
+.form-control:hover, .form-control:focus, .form-control:active {
+    border:2px solid #f3f3f3 !important
+}
+
+span.newComment i {
+    color: #ff0052;
+}
+

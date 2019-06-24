@@ -11,22 +11,10 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
-	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
-	<meta name="author" content="FREEHTML5.CO" />
-
-  <!--
-	//////////////////////////////////////////////////////
-
-	FREE HTML5 TEMPLATE
-	DESIGNED & DEVELOPED by FREEHTML5.CO
-
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	 -->
+	<meta name="keywords" content="Arrow Empire Best Programming Tutorials For Free" />
+	<meta name="author" content="ArrowEmpire" />
+	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+	<link href="https://fonts.googleapis.com/css?family=B612+Mono|Fjalla+One|Kalam|Pathway+Gothic+One|Righteous|Swanky+and+Moo+Moo&display=swap" rel="stylesheet">
 
   <!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
@@ -56,30 +44,43 @@
 	<link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
 	<!-- Modernizr JS -->
 	<script src="{{ asset('frontend/js/modernizr-2.6.2.min.js') }}"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+	<link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
 
+	<link rel="stylesheet" href="{{ asset('/custom.css') }}">
 	</head>
 	<body>
 
 	<header id="fh5co-header" role="banner">
-		<nav class="navbar navbar-default" role="navigation">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="navbar-header">
-						<!-- Mobile Toggle Menu Button -->
-						<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle visible-xs-block" data-toggle="collapse" data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-						<a class="navbar-brand" href="index.html">Clean</a>
+
+			<div class="pos-f-t">
+					<div class="collapse" id="navbarToggleExternalContent" align='center'>
+						<div class="bg-dark p-4">
+						<div class="input-group mb-3 container">
+							<input type="text" class="form-control" id='searchField' data='{{ csrf_token() }}' placeholder="Search Here" aria-label="Recipient's username" aria-describedby="basic-addon2">
+						
+								<h4 class="outputSearch" align='left'></h4>
+							
 						</div>
-						<div id="fh5co-navbar" class="navbar-collapse collapse">
-							<ul class="nav navbar-nav navbar-right">
-								<li class="active"><a href="{{ url('/') }}"><span>Home <span class="border"></span></span></a></li>
-								<li><a href="{{  route('blog') }}"><span>Blog <span class="border"></span></span></a></li>
-                <!-- Authentication Links -->
-                @guest
+						</div>
+					</div>
+					
+			</div>
+	
+	<nav class="navbar navbar-default" role="navigation">
+			<div class="container">
+					<div class="navbar-header">
+								<!-- Mobile Toggle Menu Button -->
+								<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle visible-xs-block" data-toggle="collapse" data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+								<a class="navbar-brand" href="/">Arrow Empire</a>
+					</div>
+					<ul class="nav">
+						<li class="nav-item">
+							<a class="nav-link active" href="/home">Dashboard</a>
+						</li>
+						<li class="nav-item"><a href="{{ url('/') }}"><span>Home </span></a></li>
+						<li class="nav-item"><a href="{{  route('blog') }}"><span>Blog </span></a></li>
+						@guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
@@ -106,69 +107,41 @@
                             </form>
                         </div>
                     </li>
-                @endguest
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+								@endguest
+								<li>
+								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+									<span class="glyphicon glyphicon-search btn-lg"></span>
+								</button>
+								</li>
+					</ul>			
 		</nav>
 	</header>
 	<!-- END .header -->
-
-	<div id="fh5co-main">
-		<div class="fh5co-intro text-center">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-
-							@if(Request::is('/')=='/')
-							       <h1 class="intro-lead">Arrow Empire</h1>
-										 <p class="">100% Free HTML5 Template by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a></p>
-						  @endif
-
-							@if(Request::segment(1)=='blog')
-							       <h1 class="intro-lead"><?php  echo ucfirst(Request::segment(1));   ?></h1>
-										 <p class="">100% Free HTML5 Template by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a></p>
-						  @endif
-
-
-
-
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-	<div id="fh5co-content">
+	<!-- <div id="fh5co-content"> -->
 			@if(Request::is('/'))
 						@yield('content')
 			@else
 			<div class="container">
-					<div class="row">
-						<div class="col-md-10 col-md-offset-1">
-							<div class="row">
-								<div class="col-md-3 col-md-push-9 animate-box">
+							<div class="row"  id='wrapper-box'>
+							
+								<div class="col-md-3 animate-box sidebar " >
 									@include('inc.sidebar')
 								</div>
-								<div class="col-md-9 col-md-pull-3">
+								<div class="col-md-9 mainBar">
 									@yield('content')
 								</div>
 							</div>
-						</div>
-					</div>
 			</div>
 			@endif
 
 
-	</div>
+	<!-- </div> -->
 
 
 
-    <div id="fh5co-services">
-      <div class="container">
-        <div class="row">
+
+      <div class="container-fluid" id='features'>
+        <div class="container">
           <div class="col-md-10 col-md-offset-1">
             <div class="row">
               <h2 class="section-lead text-center">Features</h2>
@@ -222,16 +195,47 @@
           </div>
         </div>
       </div>
-    </div>
+
   	<footer id="fh5co-footer">
-  		<div class="container">
-  			<div class="row">
-  				<div class="col-md-10 col-md-offset-1 text-center">
-  					<p>&copy; Clean Free HTML5. All Rights Reserved. <br>Created by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> Images: <a href="http://pexels.com/" target="_blank">Pexels</a></p>
+  		<div class="container-fluid">
+  			<div class="row container" id='footer_data' >
+					<div class="col-md-5 col-sm-6 col-xs-12">
+					<ul>
+				
+						@if($recentPosts)
+							@foreach($recentPosts as $post)
+							<a href="{{route('single.post',$post['id'])}}"><li>{{$post['title']}}</li></a>
+							@endforeach	
+						@endif	
+						
+					</ul>
+					</div>
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<ul>
+								<a href=""><li>Some text goes here</li></a>
+								<a href=""><li>Some text goes here</li></a>
+								<a href=""><li>Some text goes here</li></a>
+								<a href=""><li>Some text goes here</li></a>
+								<a href=""><li>Some text goes here</li></a>
+						</ul>
+					</div>
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<ul>
+								<a href=""><li>Some text goes here</li></a>
+								<a href=""><li>Some text goes here</li></a>
+								<a href=""><li>Some text goes here</li></a>
+								<a href=""><li>Some text goes here</li></a>
+								<a href=""><li>Some text goes here</li></a>
+						</ul>
+					</div>
+					
+				</div>
+				<div class="text-center">
+  					<p>&copy All Rights Reserved.</p>
   				</div>
-  			</div>
   		</div>
   	</footer>
+		<script src="{{ asset('js/app.js') }}"></script>
   	<!-- jQuery -->
   	<script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
   	<!-- jQuery Easing -->
@@ -242,7 +246,17 @@
   	<script src="{{ asset('frontend/js/jquery.waypoints.min.js') }}"></script>
   	<!-- Main JS -->
   	<script src="{{ asset('frontend/js/main.js') }}"></script>
-
-
+		<script src="{{ asset('frontend/js/owl.carousel.js') }}"></script>
+	
+		<script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
+		<script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+		</script>
+		
+		<script type="text/javascript" src="{{ asset('frontend/js/customFrontend.js') }}"></script>
   	</body>
   </html>

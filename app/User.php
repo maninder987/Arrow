@@ -40,4 +40,14 @@ class User extends Authenticatable
     public function posts(){
          return $this->hasMany('App\Post');
     }
+
+    public function category(){
+		return $this->belongsTo('App\Category');
+    }
+    public function comments(){
+        return $this->hasMany("App\Comments");
+    }
+    public function getNameAttribute($value){
+        return ucfirst($value);
+    }
 }

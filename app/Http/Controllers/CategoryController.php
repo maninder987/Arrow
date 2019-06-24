@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Category;
 
 use Session;
-
+use App\Post;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -71,8 +71,15 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $categories = Category::where('category', $id)->get();
+        //$id here is the category name
+        //$posts = Post::where('category', $id)->get();
+        for ($i=0; $i < count($categories); $i++) { 
+            $posts[] = Post::where('category', $categories[$i]['id'])->get();
+        }
+
+        return view('category')->with('posts',$posts);
     }
 
     /**
